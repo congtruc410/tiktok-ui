@@ -9,14 +9,12 @@ import {
     faEarthAsia,
     faCircleQuestion,
     faKeyboard,
-    faCloudUpload,
     faUser,
     faCoins,
     faGear,
     faSignOut,
 } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react';
-import HeadlessTippy from '@tippyjs/react/headless';
 import 'tippy.js/dist/tippy.css';
 
 import Button from '~/components/Button';
@@ -25,6 +23,8 @@ import styles from './Header.module.scss';
 import images from '~/assets/images';
 import AccountItem from '~/components/AccountItem';
 import Menu from '~/components/Popper/Menu';
+import { BoxIcon, MessageIcon, UploadIcon } from '~/components/Icons';
+import Image from '~/components/Image';
 
 const cx = classNames.bind(styles);
 
@@ -142,9 +142,19 @@ function Header() {
                 <div className={cx('actions')}>
                     {currentUser ? (
                         <>
-                            <Tippy delay={[0, 200]} content="Upload video" placement="bottom">
+                            <Tippy delay={[0, 50]} content="Upload video" placement="bottom">
                                 <button className={cx('action-btn')}>
-                                    <FontAwesomeIcon icon={faCloudUpload} />
+                                    <UploadIcon />
+                                </button>
+                            </Tippy>
+                            <Tippy delay={[0, 50]} content="Message" placement="bottom">
+                                <button className={cx('action-btn')}>
+                                    <MessageIcon />
+                                </button>
+                            </Tippy>
+                            <Tippy delay={[0, 50]} content="Box message" placement="bottom">
+                                <button className={cx('action-btn')}>
+                                    <BoxIcon />
                                 </button>
                             </Tippy>
                         </>
@@ -157,10 +167,11 @@ function Header() {
 
                     <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
                         {currentUser ? (
-                            <img
-                                src="https://nakamayukiefan.files.wordpress.com/2016/02/nanami-isshu1.jpg?w=640&h=480"
+                            <Image
+                                src="https://123nakamayukiefan.files.wordpress.com/2016/02/nanami-isshu1.jpg?w=640&h=480"
                                 className={cx('user-avatar')}
                                 alt="Nguyen Van A"
+                                //fallBack="https://i.pinimg.com/736x/43/b2/fe/43b2fe2e7b7ce306f4499558a0c51990.jpg"
                             />
                         ) : (
                             <button className={cx('more-btn')}>
